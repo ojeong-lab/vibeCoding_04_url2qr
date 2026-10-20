@@ -2,7 +2,10 @@
  * URL2QR - Interaction, Dynamic Mouse-Driven Gradients & JPG Export Engine
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initURL2QR() {
+  if (window.__URL2QR_INITIALIZED__) return;
+  window.__URL2QR_INITIALIZED__ = true;
+
   // 1. DOM Elements
   const body = document.body;
   const root = document.documentElement;
@@ -397,4 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial focus
   urlInput.focus();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initURL2QR);
+} else {
+  initURL2QR();
+}
